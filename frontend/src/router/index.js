@@ -3,7 +3,9 @@ import Home from '../components/Home.vue';
 import AboutMe from '../components/AboutMe.vue';
 import LoginPage from '../components/LoginPage.vue';
 import RegisterPage from '@/components/RegisterPage.vue';
-import TextTest from '@/components/TextTest.vue';
+import CRDT_Method from '@/components/CRDT_Method.vue';
+import LockingMethod from '@/components/LockingMethod.vue';
+
 
 const routes = [
   {
@@ -27,9 +29,14 @@ const routes = [
     component: RegisterPage
   },
   {
-    path: '/text',
-    name: 'TextTest',
-    component: TextTest
+    path: '/CRDT',
+    name: 'CRDT',
+    component: CRDT_Method
+  },
+  {
+    path: '/Locking',
+    name: 'LockingMethod',
+    component: LockingMethod
   }
 ];
 

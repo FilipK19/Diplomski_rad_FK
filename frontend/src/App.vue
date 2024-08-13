@@ -5,7 +5,8 @@
       <router-link to="/aboutme">About Me</router-link>
       <router-link to="/login">Login Page</router-link>
       <router-link to="/register">Register Page</router-link>
-      <router-link to="/text">Write Text</router-link>
+      <router-link to="/CRDT">CRDT</router-link>
+      <router-link to="/Locking">Locking</router-link>
     </nav>
     <router-view />
   </div>
