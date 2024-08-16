@@ -5,6 +5,7 @@ import LoginPage from '../components/LoginPage.vue';
 import RegisterPage from '@/components/RegisterPage.vue';
 import CRDT_Method from '@/components/CRDT_Method.vue';
 import LockingMethod from '@/components/LockingMethod.vue';
+import NoMethod from '@/components/NoMethod.vue';
 
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
     path: '/Locking',
     name: 'LockingMethod',
     component: LockingMethod
+  },
+  {
+    path: '/NoMethod',
+    name: 'NoMethod',
+    component: NoMethod
   }
 ];
 

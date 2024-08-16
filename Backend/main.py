@@ -1,7 +1,7 @@
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Request, Response, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timedelta, timezone
-from typing import Annotated
+from typing import Annotated, List
 import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -159,3 +159,22 @@ def read_root():
 @app.get("/test")
 def read_root(current_user: User = Depends(get_current_user)):
     return {"message": "yo" + current_user.username}
+
+
+
+# Websocket
+clients: List[WebSocket] = []
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    clients.append(websocket)
+    try:
+        while True:
+            data = await websocket.receive_text()
+            # Broadcast message to all connected clients
+            for client in clients:
+                if client != websocket:
+                    await client.send_text(data)
+    except WebSocketDisconnect:
+        clients.remove(websocket)

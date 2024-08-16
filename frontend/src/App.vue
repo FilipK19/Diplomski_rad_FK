@@ -7,6 +7,7 @@
       <router-link to="/register">Register Page</router-link>
       <router-link to="/CRDT">CRDT</router-link>
       <router-link to="/Locking">Locking</router-link>
+      <router-link to="/NoMethod">No Method</router-link>
     </nav>
     <router-view />
   </div>
