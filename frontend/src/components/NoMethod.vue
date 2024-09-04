@@ -1,14 +1,19 @@
 <template>
+    <div>
+    <TextToolbar :editor="editor" />
     <editor-content :editor="editor" />
+  </div>
   </template>
   
   <script>
   import { Editor, EditorContent } from '@tiptap/vue-3'
   import StarterKit from '@tiptap/starter-kit'
+  import TextToolbar from './TextToolbar.vue';
   
   export default {
     components: {
       EditorContent,
+      TextToolbar
     },
   
     data() {
