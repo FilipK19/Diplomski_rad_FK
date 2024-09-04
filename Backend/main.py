@@ -13,10 +13,10 @@ from jwt import PyJWTError
 
 app = FastAPI()
 
-# Allow CORS for all origins (adjust as needed)
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://127.0.0.1:8080", "http://localhost:8080"],  # Specify your frontend origin here
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -151,16 +151,16 @@ async def login_for_access_token(response: Response,
     return Token(access_token=access_token, token_type="bearer")
 
 
-@app.get("/hello")
-def read_root():
-    return {"message": "Hello, World!"}
 
 
-@app.get("/test")
+@app.get("/user")
 def read_root(current_user: User = Depends(get_current_user)):
-    return {"message": "yo" + current_user.username}
+    return {"message": current_user.username}
 
-
+@app.post("/logout")
+async def logout(response: Response):
+    response.delete_cookie(key="token")
+    return {"detail": "Logged out successfully"}
 
 # Websocket
 clients: List[WebSocket] = []

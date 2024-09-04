@@ -6,6 +6,7 @@
       <input type="password" v-model="password" placeholder="Password" />
       <button type="submit">Login</button>
     </form>
+    <div v-if="error" class="error">Error: {{ error }}</div>
   </div>
 </template>
 
@@ -17,11 +18,13 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      error: null
     };
   },
   methods: {
     async login() {
+      this.error = null;
       try {
         const formData = new FormData();
         formData.append('username', this.username);
@@ -38,20 +41,29 @@ export default {
         // Save token to a cookie
         Cookies.set('token', response.data.access_token, { expires: 1 });
 
-        // Navigate to a protected route or update the UI accordingly
+        this.$router.push({ name: 'MainPage' });
       } catch (error) {
         if (error.response) {
           // Server responded with a status other than 2xx
           console.error('Login failed:', error.response.data);
+          this.error = 'Invalid username or password. Please try again.';
         } else if (error.request) {
           // Request was made but no response received
           console.error('No response received:', error.request);
+          this.error = 'No response from the server. Please try again later.';
         } else {
           // Something else caused the error
           console.error('Error during login:', error.message);
+          this.error = 'An error occurred during login. Please try again.';
         }
       }
     }
   }
 };
 </script>
+
+<style scoped>
+.error {
+  color: red;
+}
+</style>

@@ -1,6 +1,6 @@
 import { createMemoryHistory, createRouter } from 'vue-router';
-import Home from '../components/Home.vue';
-import AboutMe from '../components/AboutMe.vue';
+import Welcome from '@/components/Welcome.vue';
+import MainPage from '../components/MainPage.vue';
 import LoginPage from '../components/LoginPage.vue';
 import RegisterPage from '@/components/RegisterPage.vue';
 import CRDT_Method from '@/components/CRDT_Method.vue';
@@ -11,13 +11,13 @@ import NoMethod from '@/components/NoMethod.vue';
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Welcome',
+    component: Welcome
   },
   {
-    path: '/aboutme',
-    name: 'AboutMe',
-    component: AboutMe
+    path: '/main',
+    name: 'MainPage',
+    component: MainPage
   },
   {
     path: '/login',

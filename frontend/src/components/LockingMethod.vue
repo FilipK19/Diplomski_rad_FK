@@ -14,7 +14,6 @@
   import * as Y from 'yjs'
   import { TiptapCollabProvider } from '@hocuspocus/provider'
   
-  // Initialize Yjs document and locking state
   const doc = new Y.Doc()
   const lockingState = doc.getMap('lockingState')
   
@@ -22,7 +21,7 @@
     name: 'TextTest',
     setup() {
       const isLocked = ref(false)
-      const editorId = ref(Math.random().toString(36).substring(2, 15)) // Unique ID for this editor
+      const editorId = ref(Math.random().toString(36).substring(2, 15))
       const editable = ref(true)
       let lockTimeout = null
   
@@ -65,16 +64,14 @@
         // Set a timeout to release the lock after a period of inactivity
         lockTimeout = setTimeout(() => {
           releaseLock()
-        }, 3000) // Lock release after 3 seconds of inactivity
+        }, 3000)
       }
   
       const handleTypingStart = () => {
-        // Initiate the lock if not already locked
         if (!isLocked.value) {
           initiateLock()
         }
   
-        // Reset the lock timeout to ensure it releases after inactivity
         resetLockTimeout()
       }
   
@@ -96,10 +93,9 @@
           const lockedState = lockingState.get('isLocked') || false
   
           isLocked.value = lockedState && lockedByOther
-          editable.value = !lockedState || (lockedState && !lockedByOther) // Allow editing if not locked or if it's locked by the current user
+          editable.value = !lockedState || (lockedState && !lockedByOther)
         })
   
-        // Watch the editable property and update the editor configuration
         watch(editable, (newEditable) => {
           if (editor.value) {
             editor.value.setEditable(newEditable)
@@ -108,10 +104,8 @@
       })
   
       onBeforeUnmount(() => {
-        // Clear timeouts to avoid memory leaks
         if (lockTimeout) clearTimeout(lockTimeout)
   
-        // Release the lock when the component unmounts
         releaseLock()
       })
   
