@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="editor-container">
     <TextToolbar :editor="editor" />
-    <editor-content :editor="editor" :class="{ locked: isLocked }" />
+    <editor-content :editor="editor" :class="{ locked: isLocked }" class="editor-content" />
   </div>
 </template>
 
@@ -136,17 +136,42 @@ export default {
 </script>
 
 <style lang="scss">
-/* Basic editor styles */
-.tiptap {
-  :first-child {
-    margin-top: 0;
-  }
+/* Basic editor container styles */
+.editor-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* Add styles for when the editor is locked */
+/* Style for the editor content area */
+.editor-content {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  padding: 10px;
+  background: #fff;
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Style for when the editor is locked */
 .locked {
   pointer-events: none;
-  background-color: #e0e0e0; /* Greyed out */
+  background-color: #e0e0e0;
   cursor: not-allowed;
+}
+
+/* Overlay to cover the editor content when locked */
+.editor-content.locked::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(224, 224, 224, 0.5); 
+  z-index: 1;
 }
 </style>

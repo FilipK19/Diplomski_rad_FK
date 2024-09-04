@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="editor-container">
     <TextToolbar :editor="editor" />
-    <editor-content :editor="editor" />
+    <editor-content :editor="editor" class="editor-content" />
   </div>
 </template>
 
@@ -74,10 +74,26 @@ export default {
 </script>
 
 <style lang="scss">
-/* Basic editor styles */
-.tiptap {
-  :first-child {
-    margin-top: 0;
-  }
+/* Basic editor container styles */
+.editor-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style for the editor content area */
+.editor-content {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  padding: 10px;
+  background: #fff;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.editor-content .ProseMirror {
+  min-height: 100%;
 }
 </style>
