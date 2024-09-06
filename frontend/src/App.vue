@@ -16,7 +16,8 @@
         <router-link to="/NoMethod">No Method</router-link>
       </template>
     </nav>
-    <router-view />
+    <!-- Listen for login-success and logout-success events -->
+    <router-view @login-success="handleLogin" @logout-success="handleLogout" />
   </div>
 </template>
 
@@ -30,6 +31,14 @@ export default {
       isLoggedIn: false
     };
   },
+  methods: {
+    handleLogin() {
+      this.isLoggedIn = true;
+    },
+    handleLogout() {
+      this.isLoggedIn = false;
+    }
+  },
   async mounted() {
     try {
       // Check if the user is logged in
@@ -39,7 +48,7 @@ export default {
       this.isLoggedIn = false;
     }
   }
-}
+};
 </script>
 
 <style>

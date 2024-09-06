@@ -9,17 +9,16 @@ from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from motor.motor_asyncio import AsyncIOMotorClient
-from jwt import PyJWTError
 
 app = FastAPI()
 
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:8080", "http://localhost:8080"],  # Specify your frontend origin here
+    allow_origins=["http://127.0.0.1:8080", "http://localhost:8080"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"],    
 )
 
 

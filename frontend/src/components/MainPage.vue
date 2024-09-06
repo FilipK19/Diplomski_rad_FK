@@ -40,6 +40,8 @@ export default {
 
       axios.post('http://localhost:8000/logout', {}, { withCredentials: true })
         .then(() => {
+          // Emit the logout-success event to notify App.vue
+          this.$emit('logout-success');
           this.$router.push({ name: 'LoginPage' });
         })
         .catch(error => {

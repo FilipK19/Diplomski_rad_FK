@@ -41,18 +41,18 @@ export default {
         // Save token to a cookie
         Cookies.set('token', response.data.access_token, { expires: 1 });
 
+        // Emit the login-success event to notify App.vue
+        this.$emit('login-success');
+
         this.$router.push({ name: 'MainPage' });
       } catch (error) {
         if (error.response) {
-          // Server responded with a status other than 2xx
           console.error('Login failed:', error.response.data);
           this.error = 'Invalid username or password. Please try again.';
         } else if (error.request) {
-          // Request was made but no response received
           console.error('No response received:', error.request);
           this.error = 'No response from the server. Please try again later.';
         } else {
-          // Something else caused the error
           console.error('Error during login:', error.message);
           this.error = 'An error occurred during login. Please try again.';
         }
