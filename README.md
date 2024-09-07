@@ -6,7 +6,7 @@
 
 ## Sveučilište Jurja Dobrile u Puli, Fakultet Računarstva 
 
-## Sažetak
+# Sažetak
 U ovom radu su opisane metode rješavanja konflikta prilikom kolaborativnog pisanja. 
 Definira se što su to konflikti i kako nastaju prilikom zajedničkog pisanja. Detaljno se 
 opisuje svaka metoda rješavanja konflikta i pokazuje način rada kroz jednostavne 
@@ -16,6 +16,12 @@ nedostatci svake metode. Na kraju se definira najbolja metoda i objašnjavaju ra
 njenog odabira.
 Ključne riječi: kolaborativno pisanje, konflikt, metode rješavanja konflikta, OT, CRDT, 
 Locking
+
+# Funkcionalnosti
+U programu se implementiralo dvije metode rješavanja konflikta u kolaborativnim uređivačima 
+teksta i opcija pisanja bez metode. Implementiralo se metode CDRDT i locking, te i opciju 
+bez metode u jednostavni uređivač teksta TipTap. U programu korisnik može da stvori korisnički
+račun i snjim se prijaviti. Nakon toga ima opciju testiranja pisanja pomoću odabrane metode.
 
 
 ### Način pokretanja:
